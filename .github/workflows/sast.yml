@@ -72,7 +72,7 @@ jobs:
             grep -A100000 '{"version"' /tmp/raw-spotbugs-output.txt > /tmp/spotbugs-results.sarif
 
         - name: Upload SpotBugs SARIF Results
-          uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v7.0.1
           with: # Yep, you can open this file in your IDE: Just drag and drop it into IntelliJ IDEA or Visual Studio Code
             name: spotbugs-scan-results.sarif
             path: /tmp/spotbugs-results.sarif
