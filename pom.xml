@@ -68,11 +68,32 @@
 				<groupId>org.jetbrains.kotlinx</groupId>
 				<artifactId>kover-maven-plugin</artifactId>
 				<version>0.9.8</version>
+				<executions>
+					<execution>
+						<id>kover-instrumentation</id>
+						<goals>
+							<goal>instrumentation</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>kover-report-xml</id>
+						<goals>
+							<goal>report-xml</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>kover-report-html</id>
+						<goals>
+							<goal>report-html</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<excludes>
-						<classes>
-							<class>com.example.demo.DemoApplicationKt</class> <class>com.example.demo.config.*</class>          </classes>
-					</excludes>
+					<filters>
+						<excludes>
+							<classes>com.example.demo.DemoApplicationKt,com.example.demo.config.*</classes>
+						</excludes>
+					</filters>
 				</configuration>
 			</plugin>
 			<plugin>
