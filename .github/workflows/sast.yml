@@ -44,7 +44,7 @@ jobs:
           # ======================================================
         - name: Grype Dependency Scanner (Report)
           id: scan
-          uses: anchore/scan-action@7.4.0
+          uses: anchore/scan-action@v7.4.0
           with:
             path: "."
             fail-build: false # to always generate the report, then again a scan that might fail
