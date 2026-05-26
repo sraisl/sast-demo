@@ -1,6 +1,9 @@
 name: SAST
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
     sast:
