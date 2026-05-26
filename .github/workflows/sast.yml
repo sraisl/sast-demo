@@ -76,3 +76,35 @@ jobs:
           with: # Yep, you can open this file in your IDE: Just drag and drop it into IntelliJ IDEA or Visual Studio Code
             name: spotbugs-scan-results.sarif
             path: /tmp/spotbugs-results.sarif
+
+          # ======================================================
+
+
+          semgrep-scan:
+            name: Semgrep Scans
+            runs-on: ubuntu-latest
+            container:
+              image: semgrep/semgrep:latest
+            permissions:
+              # required for all workflows
+              security-events: write
+              # only required for workflows in private repositories
+              actions: read
+              contents: read
+
+            steps:
+
+              - name: Checkout Sources
+                uses: actions/checkout@v6
+                with:
+                  persist-credentials: false
+
+              - name: Run Semgrep using selected rules (metrics off)
+                run: |
+                  semgrep scan --sarif --config auto . --output /tmp/semgrep-results.sarif || true
+
+              - name: Upload Semgrep SARIF Results
+                uses: actions/upload-artifact@v7.0.1
+                with: # Yep, you can open this file in your IDE: Just drag and drop it into IntelliJ IDEA or Visual Studio Code
+                  name: semgrep-scan-results.sarif
+                  path: /tmp/semgrep-results.sarif
