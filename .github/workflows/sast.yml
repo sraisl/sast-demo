@@ -27,3 +27,13 @@ jobs:
 
         - name: Build with Maven
           run: mvn clean install
+
+          # ======================================================
+        - name: Generate CycloneDX SBOM
+          run: mvn org.cyclonedx:cyclonedx-maven-plugin:2.9.1:makeAggregateBom # outputs to target/bom.json and/or bom.xml
+
+        - name: Upload SBOM as Artifact
+          uses: actions/upload-artifact@v7.0.1
+          with:
+            name: sbom-cyclonedx.json
+            path: target/bom.json
