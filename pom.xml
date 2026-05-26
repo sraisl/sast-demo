@@ -65,6 +65,17 @@
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 		<plugins>
 			<plugin>
+				<groupId>org.jetbrains.kotlinx</groupId>
+				<artifactId>kover-maven-plugin</artifactId>
+				<version>0.9.8</version>
+				<configuration>
+					<excludes>
+						<classes>
+							<class>com.example.demo.DemoApplicationKt</class> <class>com.example.demo.config.*</class>          </classes>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
